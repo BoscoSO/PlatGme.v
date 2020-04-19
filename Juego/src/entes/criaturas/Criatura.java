@@ -75,7 +75,7 @@ public  abstract class Criatura extends Ente {
 		if(mapa.obtenerCuadroCatalogo(bordeDerecho+bordeSuperior*mapa.getAncho()).esSolido()) {
 			colision=true;
 		}
-		return false;
+		return colision;
 	}
 	public Sprite obtenSprite() {
 		return this.sprite;
