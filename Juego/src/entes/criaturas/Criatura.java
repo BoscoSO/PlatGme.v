@@ -9,7 +9,7 @@ public  abstract class Criatura extends Ente {
 	protected boolean enMovimiento=false;
 	
 	
-	private int gravedad=1;
+	private int gravedad=2;
 	
 	
 	public void actualizar() {
@@ -75,7 +75,7 @@ public  abstract class Criatura extends Ente {
 		if(mapa.obtenerCuadroCatalogo(bordeDerecho+bordeSuperior*mapa.getAncho()).esSolido()) {
 			colision=true;
 		}
-		return colision;
+		return false;
 	}
 	public Sprite obtenSprite() {
 		return this.sprite;
