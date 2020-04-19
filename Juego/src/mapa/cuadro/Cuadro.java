@@ -7,12 +7,14 @@ public class Cuadro {
 	public int x;
 	public int y;
 	public Sprite sprite;
+	private boolean solido;
 	
 	public static final int LADO=32;
 	
+	
 	//coleccion de cuadros
-	public static final Cuadro VACIO=new Cuadro(Sprite.VACIO);
-	public static final Cuadro AGUA=new Cuadro(Sprite.AGUA);
+	public static final Cuadro VACIO=new Cuadro(Sprite.VACIO,false);
+	public static final Cuadro AGUA=new Cuadro(Sprite.AGUA,false);
 	public static final Cuadro BORDEAGUADER=new Cuadro(Sprite.BORDEAGUADER);
 	public static final Cuadro BORDEAGUAIZQ=new Cuadro(Sprite.BORDEAGUAIZQ);
 	public static final Cuadro BOTTOM=new Cuadro(Sprite.BOTTOM);
@@ -21,8 +23,8 @@ public class Cuadro {
 	public static final Cuadro CUELLOSOLO=new Cuadro(Sprite.CUELLOSOLO);
 	public static final Cuadro ESQUINADER=new Cuadro(Sprite.ESQUINADER);
 	public static final Cuadro ESQUINAIZQ=new Cuadro(Sprite.ESQUINAIZQ);
-	public static final Cuadro NUBEDER=new Cuadro(Sprite.NUBEDER);
-	public static final Cuadro NUBEIZQ=new Cuadro(Sprite.NUBEIZQ);
+	public static final Cuadro NUBEDER=new Cuadro(Sprite.NUBEDER,false);
+	public static final Cuadro NUBEIZQ=new Cuadro(Sprite.NUBEIZQ,false);
 	public static final Cuadro PARED=new Cuadro(Sprite.PARED);
 	public static final Cuadro PAREDAGUADER=new Cuadro(Sprite.PAREDAGUADER);
 	public static final Cuadro PAREDAGUAIZQ=new Cuadro(Sprite.PAREDAGUAIZQ);
@@ -40,16 +42,21 @@ public class Cuadro {
 	public static final Cuadro SUELODER=new Cuadro(Sprite.SUELODER);
 	public static final Cuadro SUELOIZQ=new Cuadro(Sprite.SUELOIZQ);
 	public static final Cuadro SUELOSOLO=new Cuadro(Sprite.SUELOSOLO);
-	public static final Cuadro CIELO=new Cuadro(Sprite.CIELO);
+	public static final Cuadro CIELO=new Cuadro(Sprite.CIELO,false);
 	//fin coleccion
 	public Cuadro(Sprite sprite) {
 		this.sprite=sprite;
+		this.solido=true;
+	}
+	public Cuadro(Sprite sprite,boolean solido) {
+		this.sprite=sprite;
+		this.solido=solido;
 	}
 	public void mostrar(int x,int y,Pantalla pantalla) {
 		pantalla.mostrarCuadro(x<<5, y<<5, this);
 	}
-	public boolean solido() {
-		return false;
+	public boolean esSolido() {
+		return solido;
 	}
 	
 }

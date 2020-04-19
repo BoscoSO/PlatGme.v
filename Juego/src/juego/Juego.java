@@ -57,7 +57,8 @@ public class Juego extends Canvas implements Runnable  {
 		mapa=new MapaCargado("/mapas/mapa.png");
 
 		teclado= new Teclado();
-		jugador=new Jugador(teclado,Sprite.jugadorFrente,271,286);
+		
+		jugador=new Jugador(mapa,teclado,Sprite.jugadorFrente,271,286);
 		
 		addKeyListener(teclado);
 		

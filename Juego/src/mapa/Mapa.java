@@ -22,7 +22,12 @@ public abstract class Mapa {
 		cargarMapa(ruta);
 		generarMapa();
 	}
-	
+	public Cuadro obtenerCuadroCatalogo(int i) {
+		return cuadrosCatalogo[i];
+	}
+	public int getAncho() {
+		return this.ancho;
+	}
 	protected void generarMapa() {
 		
 	}

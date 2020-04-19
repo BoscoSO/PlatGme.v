@@ -3,6 +3,7 @@ package entes.criaturas;
 import control.Teclado;
 import graficos.Pantalla;
 import graficos.Sprite;
+import mapa.Mapa;
 
 public class Jugador extends Criatura{
 	
@@ -10,55 +11,62 @@ public class Jugador extends Criatura{
 	
 	private int animacion;
 	
-	public Jugador(Teclado teclado,Sprite sprite) {
+	public Jugador(Mapa mapa,Teclado teclado,Sprite sprite) {
+		this.mapa=mapa;
 		this.teclado=teclado;
 		this.sprite=sprite;
 	}
 	
-	public Jugador(Teclado teclado,Sprite sprite,int posicionX,int posicionY) {
+	public Jugador(Mapa mapa,Teclado teclado,Sprite sprite,int posicionX,int posicionY) {
+		this.mapa=mapa;
 		this.teclado=teclado;
 		this.x=posicionX;
 		this.y=posicionY;
 		this.sprite=sprite;
 	}
-
+	
 	public void actualizar() {
 		
 		int desplazamientoX=0;
 		int desplazamientoY=0;
+		int velocidadMovimiento=1;
 		
 		if(animacion<32767) {
 			animacion++;	
 		}else {
 			animacion=0;
 		}
-		
+		if(teclado.correr) {
+			velocidadMovimiento=2;
+		}
 		
 		if(teclado.arriba) {
-			desplazamientoY--;
-		}
+			desplazamientoY-=velocidadMovimiento;
+		}	
 		if(teclado.abajo) {
-			desplazamientoY++;
+			desplazamientoY+=velocidadMovimiento;
 		}
 		if(teclado.derecha) {
-			desplazamientoX++;
+			desplazamientoX+=velocidadMovimiento;
 		}
 		if(teclado.izquierda) {
-			desplazamientoX--;
+			desplazamientoX-=velocidadMovimiento;
 		}
-	
+		
 		if(desplazamientoX != 0 || desplazamientoY != 0) {
 			mover(desplazamientoX,desplazamientoY);
 			enMovimiento=true;
 		}else {
 			enMovimiento=false;
 		}
-		
+		//animaciones movimiento
 		if(direccion== 'n') {
 			
-		}if(direccion== 's') {
+		}
+		if(direccion== 's') {
 			
-		}if(direccion== 'o') {
+		}
+		if(direccion== 'o') {
 			int resto=animacion%120;
 			
 			sprite=Sprite.izquierda0;
@@ -79,7 +87,8 @@ public class Jugador extends Criatura{
 					sprite=Sprite.izquierda7;
 				}
 			}
-		}if(direccion== 'e') {
+		}
+		if(direccion== 'e') {
 			int resto=animacion%120;
 			sprite=Sprite.derecha0;
 			if(enMovimiento) {
@@ -104,7 +113,7 @@ public class Jugador extends Criatura{
 			sprite=Sprite.jugadorFrente;
 		}
 		
-		
+
 	}
 	
 	public void mostrar(Pantalla pantalla) {
